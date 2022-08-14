@@ -23,3 +23,9 @@ terraform init
 - main.tf | entry point and coordinator for all infrastrucutre logic
 - variables.tf | holds all the variables required for infrastructure
 - modules | reuable resources
+
+### Run TF
+
+```
+terraform plan
+```
