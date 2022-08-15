@@ -38,6 +38,8 @@ module "cappEnvironment" {
   azure-tenant-id       = var.azure-tenant-id
 }
 
+// NOTE: can't create the below untill there is a container in the ACR
+
 module "webGateway" {
   source            = "./modules/apps/webgateway"
   location          = "uksouth"
