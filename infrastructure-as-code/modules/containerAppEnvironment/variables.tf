@@ -5,7 +5,7 @@ variable "system_name" {
 
 variable "location" {
   type        = string
-  description = "The location for the deployment"
+  description = "The location for the deployment: northcentralusstage | canadacentral | westeurope | northeurope | eastus | eastus2 | eastasia | australiaeast | germanywestcentral | japaneast | uksouth | westus | centralus | northcentralus | southcentralus | koreacentral | brazilsouth"
   validation {
     condition     = can(regex("^[a-z]+$", var.location))
     error_message = "For the location value only a-z are allowed."
@@ -13,15 +13,18 @@ variable "location" {
 }
 
 variable "resource_group_id" {
-  type = string
+  type        = string
+  description = "Id of resource group"
 }
 
-variable "log_analytics_work_space_id" {
-  type = string
+variable "laws_workspace_id" {
+  type        = string
+  description = "The work space or customer Id"
 }
 
-variable "log_analytics_work_space_primary_shared_key" {
-  type = string
+variable "laws_primary_shared_key" {
+  type        = string
+  description = "The primary shared key"
 }
 
 # Azure Subscription Id

@@ -24,16 +24,18 @@ module "laws" {
 }
 
 module "cappEnvironment" {
-  source                                      = "./modules/containerAppEnvironment"
-  system_name                                 = var.system-name
-  location                                    = var.location
-  azure-client-id                             = var.azure-client-id
-  azure-client-secret                         = var.azure-client-secret
-  azure-subscription-id                       = var.azure-subscription-id
-  azure-tenant-id                             = var.azure-subscription-id
-  resource_group_id                           = module.resourceGroups.rg_logic_id_out
-  log_analytics_work_space_id                 = module.laws.log_analytics_workspace_laws_capps_workspace_id
-  log_analytics_work_space_primary_shared_key = module.laws.log_analytics_workspace_laws_capps_primary_shared_key
+  source      = "./modules/containerAppEnvironment"
+  system_name = var.system-name
+  location    = "uksouth" # there is no South-Africa option? :( 
+
+  resource_group_id       = module.resourceGroups.rg_logic_id_out
+  laws_workspace_id       = module.laws.laws_capps_workspace_workspace_id
+  laws_primary_shared_key = module.laws.laws_capps_primary_shared_key
+
+  azure-client-id       = var.azure-client-id
+  azure-client-secret   = var.azure-client-secret
+  azure-subscription-id = var.azure-subscription-id
+  azure-tenant-id       = var.azure-tenant-id
 }
 
 # resource "azapi_resource" "capp-webgateway" {
