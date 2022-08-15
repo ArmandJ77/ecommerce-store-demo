@@ -27,5 +27,9 @@ terraform init
 ### Run TF
 
 ```
+terraform init 
 terraform plan
+terraform apply
 ```
+
+Note: Must run terraform init if changes made in modules or adding a new module.
