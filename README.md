@@ -2,12 +2,12 @@
 
 ## Current state of the project
 
-- Currently the infrastructure-as-code directory contians module based Terraform scripts when ran will create:
+- Currently the infrastructure-as-code directory contains module based Terraform scripts when ran will create:
 - Resource Groups
 - Log analytics workspace
 - Azure Container Registry
 - Azure Container App environment
-- Under app/gateway contains the terraform script required to spin up a new contianer app. Note you would wirst need to push the web gateway container to the ACR so taht when the deployment goes through for the GatewayApp that the container is available, else the deployment will fail.
+- Under app/gateway contains the terraform script required to spin up a new contianer app. Note you would first need to push the web gateway container to the ACR so that when the deployment goes through for the GatewayApp that the container is available, else the deployment will fail.
 - Along with the Gateway app it contains 3 probe endpoints which maps toa  very genric web api controller which returns a string and 200 response.
 
 ## Next Steps
