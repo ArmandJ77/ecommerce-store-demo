@@ -28,20 +28,22 @@ Note: Must run terraform init if changes made in modules or adding a new module.
 - variables.tf | holds all the variables required for infrastructure
 - modules | reuable resources
 
-### Run TF
+### Terraform commands
 
 ```
-terraform init 
-terraform plan
-terraform apply
+terraform init -- This will initialise the TF state file
+terraform plan -- Calculate and display the proposed changes
+terraform apply -- Apply the proposed changes to the environment
 ```
 
+### Pushing Contianers to the acr (TODO: Move to a github action)
 
+Note: This is jsut for faster local testing an will be moved into a github action
 
 
 ### Additional
 
-If you like me and don;t want to constantly type out 'terraform' keyword and oyu using powershell, then you can set an alias.
+If you like me and don't want to constantly type out 'terraform' keyword and oyu using powershell, then you can set an alias.
 
 ```
 Set-Alias -Name tf -Value terraform
