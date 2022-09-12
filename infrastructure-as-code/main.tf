@@ -31,11 +31,6 @@ module "cappEnvironment" {
   resource_group_id       = module.resourceGroups.rg_logic_id_out
   laws_workspace_id       = module.laws.laws_capps_workspace_workspace_id
   laws_primary_shared_key = module.laws.laws_capps_primary_shared_key
-
-  azure-client-id       = var.azure-client-id
-  azure-client-secret   = var.azure-client-secret
-  azure-subscription-id = var.azure-subscription-id
-  azure-tenant-id       = var.azure-tenant-id
 }
 
 // NOTE: can't create the below untill there is a container in the ACR
