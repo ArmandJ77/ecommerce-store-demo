@@ -38,8 +38,27 @@ terraform apply -- Apply the proposed changes to the environment
 
 ### Pushing Contianers to the acr (TODO: Move to a github action)
 
-Note: This is jsut for faster local testing an will be moved into a github action
+Note: This is just for faster local testing an will be moved into a github action
+open a powershell terminal.
 
+run
+
+```
+az login
+```
+You need to sign in to the created ACR else the script can't auth
+```
+az acr login -n crsharedhappeningfactory
+```
+
+cd into the \webgateway dir
+
+run
+```
+.\docker-local-build-push.ps1
+```
+
+TODO: Investigate the Github deployment pipline of the contaier app and its integration with Terraform
 
 ### Additional
 
