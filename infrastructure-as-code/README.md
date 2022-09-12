@@ -2,21 +2,25 @@
 
 ## IaC for azure container apps demo using Terraform
 
-### AZ Guids
-Need to create your own terraform.tfvars contining values for the following:
+### Authenticating using Azure Credentials
+
+Ensure you have the az cli installed
+
+cd into the working directory and run:
 
 ```
-azure-subscription-id
-azure-client-id
-azure-client-secret
-azure-tenant-id
+az login
 ```
+
+Then ensure you selected the correct tenant and subscription.
 
 ### Initialise the terraform workspace
 
 ```
 terraform init
 ```
+
+Note: Must run terraform init if changes made in modules or adding a new module.
 
 ### Structure
 
@@ -32,4 +36,13 @@ terraform plan
 terraform apply
 ```
 
-Note: Must run terraform init if changes made in modules or adding a new module.
+
+
+
+### Additional
+
+If you like me and don;t want to constantly type out 'terraform' keyword and oyu using powershell, then you can set an alias.
+
+```
+Set-Alias -Name tf -Value terraform
+```
