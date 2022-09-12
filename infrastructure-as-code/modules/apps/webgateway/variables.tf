@@ -54,28 +54,3 @@ variable "app_name" {
     error_message = "For the app_name value only a-z are allowed."
   }
 }
-
-# Azure Subscription Id
-variable "azure-subscription-id" {
-  type        = string
-  description = "Azure Subscription Id"
-}
-
-# Azure Client Id/appId
-variable "azure-client-id" {
-  type        = string
-  description = "Azure Client Id/appId"
-}
-
-# Azure Service principle secret
-variable "azure-client-secret" {
-  type        = string
-  description = "Azure Service principle secret"
-}
-
-# Azure Tenant Id
-variable "azure-tenant-id" {
-  type        = string
-  description = "Azure Tenant Id"
-}
-
