@@ -1,4 +1,8 @@
 // TODO: Investigate managed identities so the ACA can pull with out the need of an acr admin user crednetial
+output "cr_shared_id" {
+  value = azurerm_container_registry.crshared.id
+}
+
 output "cr_shared_login_server" {
   value = azurerm_container_registry.crshared.login_server
 }

@@ -4,4 +4,11 @@ resource "azurerm_container_registry" "crshared" {
   location            = var.location
   sku                 = var.sku
   admin_enabled       = var.adminEnabled
+
+  identity {
+    type = "UserAssigned"
+    identity_ids = [
+      var.uai_acr_capps_pull_id
+    ]
+  }
 }

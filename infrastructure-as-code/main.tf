@@ -5,13 +5,26 @@ module "resourceGroups" {
   name_of_logic_resourcegroup  = "logic"
 }
 
-module "containerRegistry" {
-  source              = "./modules/containerRegistry"
-  base_name           = "shared${var.system-name}"
+resource "azurerm_user_assigned_identity" "uai_acr_capps_pull" {
   resource_group_name = module.resourceGroups.rg_shared_name_out
   location            = module.resourceGroups.rg_shared_location_out
-  sku                 = "Basic"
-  adminEnabled        = true
+  name                = "uai_acr_capps_pull"
+}
+
+module "containerRegistry" {
+  source                = "./modules/containerRegistry"
+  base_name             = "shared${var.system-name}"
+  resource_group_name   = module.resourceGroups.rg_shared_name_out
+  location              = module.resourceGroups.rg_shared_location_out
+  sku                   = "Basic"
+  adminEnabled          = true
+  uai_acr_capps_pull_id = azurerm_user_assigned_identity.uai_acr_capps_pull.id
+}
+
+resource "azurerm_role_assignment" "uai_acr_capps_pull_assignment" {
+  scope                = module.containerRegistry.cr_shared_id
+  role_definition_name = "AcrPull"
+  principal_id         = azurerm_user_assigned_identity.uai_acr_capps_pull.principal_id
 }
 
 module "laws" {
@@ -42,16 +55,12 @@ module "webGateway" {
 
   capp_environment_id = module.cappEnvironment.aca_environment_id
 
-  cr_login_server   = module.containerRegistry.cr_shared_login_server
-  cr_admin_user     = module.containerRegistry.cr_shared_admin_username
-  cr_admin_password = module.containerRegistry.cr_shared_admin_password
+  uai_acr_capps_pull_id    = azurerm_user_assigned_identity.uai_acr_capps_pull.id
+  uai_acr_pull_resource_id = azurerm_user_assigned_identity.uai_acr_capps_pull.id
+
+  cr_login_server = module.containerRegistry.cr_shared_login_server
 
   app_name       = "webgateway"
   app_image_name = "webgateway"
   app_image_tag  = "latest"
-
-  azure-client-id       = var.azure-client-id
-  azure-client-secret   = var.azure-client-secret
-  azure-subscription-id = var.azure-subscription-id
-  azure-tenant-id       = var.azure-tenant-id
 }

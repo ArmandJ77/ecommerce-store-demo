@@ -22,16 +22,6 @@ variable "cr_login_server" {
   description = "Login server of the acr"
 }
 
-variable "cr_admin_user" {
-  type        = string
-  description = "Admin user of the container registry"
-}
-
-variable "cr_admin_password" {
-  type        = string
-  description = "Admin user passord of the container resigtry"
-}
-
 variable "app_image_name" {
   type        = string
   description = "Name of the docker image to be deployed"
@@ -53,4 +43,12 @@ variable "app_name" {
     condition     = can(regex("^[a-z]+$", var.app_name))
     error_message = "For the app_name value only a-z are allowed."
   }
+}
+
+variable "uai_acr_capps_pull_id" {
+  type = string
+}
+
+variable "uai_acr_pull_resource_id" {
+  type = string
 }

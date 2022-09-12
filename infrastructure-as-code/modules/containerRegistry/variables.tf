@@ -30,3 +30,7 @@ variable "adminEnabled" {
   type        = bool
   description = "Should the container registry's admin account be enabled"
 }
+
+variable "uai_acr_capps_pull_id" {
+  type = string
+}

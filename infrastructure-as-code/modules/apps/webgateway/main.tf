@@ -3,6 +3,12 @@ resource "azapi_resource" "capp-webgateway" {
   location  = var.location
   parent_id = var.resource_group_id
   type      = "Microsoft.App/containerApps@2022-03-01"
+  identity {
+    type = "UserAssigned"
+    identity_ids = [
+      var.uai_acr_capps_pull_id
+    ]
+  }
   body = jsonencode({
     properties = {
       managedEnvironmentId = var.capp_environment_id
@@ -13,18 +19,17 @@ resource "azapi_resource" "capp-webgateway" {
         },
         registries = [
           {
-            server            = var.cr_login_server
-            username          = var.cr_admin_user
-            passwordSecretRef = "registry-password"
+            server   = var.cr_login_server
+            identity = var.uai_acr_pull_resource_id
           }
         ],
-        secrets : [
-          {
-            name = "registry-password"
-            # TODO: Investigate ACA support for Managed Identity connection to ACR
-            value = var.cr_admin_password
-          }
-        ]
+        # secrets : [
+        #   {
+        #     # name = "registry-password"
+        #     # # TODO: Investigate ACA support for Managed Identity connection to ACR
+        #     # value = var.cr_admin_password
+        #   }
+        # ]
       },
       template = {
         containers = [
